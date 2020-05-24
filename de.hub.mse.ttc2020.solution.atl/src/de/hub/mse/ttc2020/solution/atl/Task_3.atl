@@ -6,7 +6,7 @@ create OUT : V2 from IN : V1;
 
 helper def : trace : OclAny = OclUndefined;
 
-rule migrate {
+lazy rule migrate {
 	from instance : V1!Person
 	to instance2 : V2!Person (
 		name <- if instance.name = '' and thisModule.trace.name.oclIsUndefined() then OclUndefined else instance.name endif, 

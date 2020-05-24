@@ -4,7 +4,7 @@
 module Task_1_back;
 create OUT : V1 from IN : V2;
 
-rule migrateBack {
+lazy rule migrateBack {
 	from instance : V2!Person
 	to instance1 : V1!Person (name <- instance.name)
 }

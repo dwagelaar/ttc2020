@@ -7,7 +7,7 @@ create OUT : V2 from IN : V1;
 helper def : year : Integer =
 	"#native"!"java::util::Calendar".refInvokeStaticOperation('getInstance', Sequence{}).get(1);
 
-rule migrate {
+lazy rule migrate {
 	from instance : V1!Container
 	to instance2 : V2!Container (
 		dog <- thisModule.Dog(instance.dog),
@@ -15,7 +15,7 @@ rule migrate {
 	)
 }
 
-unique lazy rule Dog {
+lazy rule Dog {
 	from dog : V1!Dog
 	to dog2 : V2!Dog (name <- dog.name, owner <- thisModule.Person(dog.owner))
 }

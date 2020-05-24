@@ -12,7 +12,7 @@ helper def : dogTrace : V1!Dog =
 helper def : year : Integer =
 	"#native"!"java::util::Calendar".refInvokeStaticOperation('getInstance', Sequence{}).get(1);
 
-rule migrate {
+lazy rule migrate {
 	from instance : V2!Container
 	to instance1 : V1!Container (
 		dog <- thisModule.Dog(instance.dog),
@@ -20,7 +20,7 @@ rule migrate {
 	)
 }
 
-unique lazy rule Dog {
+lazy rule Dog {
 	from dog : V2!Dog
 	to dog1 : V1!Dog (
 		name <- dog.name, 

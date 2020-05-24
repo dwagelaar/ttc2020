@@ -7,7 +7,7 @@ create OUT : V2 from IN : V1;
 helper def : year : Integer =
 	"#native"!"java::util::Calendar".refInvokeStaticOperation('getInstance', Sequence{}).get(1);
 
-rule migrate {
+lazy rule migrate {
 	from instance : V1!Person
 	to instance2 : V2!Person (name <- instance.name, ybirth <- thisModule.year - instance.age)
 }

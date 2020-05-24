@@ -17,7 +17,13 @@ public class ATLReverseTask extends ATLTask {
 
 	@Override
 	public EObject migrateBack(final EObject instance) {
-		return transform(migrate, instance, trace);
+		try {
+			return transform(migrate, instance, trace);
+		} finally {
+			trace = null;
+			migrate.getOutputModels().get("OUT").getResource().getContents().clear();
+			migrateBack.getOutputModels().get("OUT").getResource().getContents().clear();
+		}
 	}
 
 }
