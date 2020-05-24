@@ -1,0 +1,34 @@
+-- @atlcompiler emftvm
+-- @path V1=/de.hub.mse.ttc2020.benchmark/data/scenario4/models/V1.ecore
+-- @path V2=/de.hub.mse.ttc2020.benchmark/data/scenario4/models/V2.ecore
+module Task_4_back;
+create OUT : V1 from IN : V2;
+
+helper def : trace : OclAny = OclUndefined;
+
+helper def : dogTrace : V1!Dog =
+	if thisModule.trace.oclIsKindOf(V1!Container) then thisModule.trace.dog else OclUndefined endif;
+
+helper def : year : Integer =
+	"#native"!"java::util::Calendar".refInvokeStaticOperation('getInstance', Sequence{}).get(1);
+
+rule migrate {
+	from instance : V2!Container
+	to instance1 : V1!Container (
+		dog <- thisModule.Dog(instance.dog),
+		person <- thisModule.Person(instance.person)
+	)
+}
+
+unique lazy rule Dog {
+	from dog : V2!Dog
+	to dog1 : V1!Dog (
+		name <- dog.name, 
+		age <- if thisModule.dogTrace.oclIsUndefined() then -1 else thisModule.dogTrace.age endif, 
+		owner <- thisModule.Person(dog.owner))
+}
+
+unique lazy rule Person {
+	from person : V2!Person
+	to person1 : V1!Person (name <- person.name, age <- thisModule.year - person.ybirth)
+}

@@ -1,0 +1,10 @@
+-- @atlcompiler emftvm
+-- @path V1=/de.hub.mse.ttc2020.benchmark/data/scenario1/models/V1.ecore
+-- @path V2=/de.hub.mse.ttc2020.benchmark/data/scenario1/models/V2.ecore
+module Task_1_back;
+create OUT : V1 from IN : V2;
+
+rule migrateBack {
+	from instance : V2!Person
+	to instance1 : V1!Person (name <- instance.name)
+}

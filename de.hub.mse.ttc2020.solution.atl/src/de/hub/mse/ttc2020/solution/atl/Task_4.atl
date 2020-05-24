@@ -1,0 +1,26 @@
+-- @atlcompiler emftvm
+-- @path V1=/de.hub.mse.ttc2020.benchmark/data/scenario4/models/V1.ecore
+-- @path V2=/de.hub.mse.ttc2020.benchmark/data/scenario4/models/V2.ecore
+module Task_4;
+create OUT : V2 from IN : V1;
+
+helper def : year : Integer =
+	"#native"!"java::util::Calendar".refInvokeStaticOperation('getInstance', Sequence{}).get(1);
+
+rule migrate {
+	from instance : V1!Container
+	to instance2 : V2!Container (
+		dog <- thisModule.Dog(instance.dog),
+		person <- thisModule.Person(instance.person)
+	)
+}
+
+unique lazy rule Dog {
+	from dog : V1!Dog
+	to dog2 : V2!Dog (name <- dog.name, owner <- thisModule.Person(dog.owner))
+}
+
+unique lazy rule Person {
+	from person : V1!Person
+	to person2 : V2!Person (name <- person.name, ybirth <- thisModule.year - person.age)
+}

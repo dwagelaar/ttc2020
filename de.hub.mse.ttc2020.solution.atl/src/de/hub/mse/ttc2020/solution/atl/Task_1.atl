@@ -1,0 +1,14 @@
+-- @atlcompiler emftvm
+-- @path V1=/de.hub.mse.ttc2020.benchmark/data/scenario1/models/V1.ecore
+-- @path V2=/de.hub.mse.ttc2020.benchmark/data/scenario1/models/V2.ecore
+module Task_1;
+create OUT : V2 from IN : V1;
+
+helper def : trace : OclAny = OclUndefined;
+
+rule migrate {
+	from instance : V1!Person
+	to instance2 : V2!Person (
+		name <- instance.name, 
+		age <- if thisModule.trace.oclIsKindOf(V2!Person) then thisModule.trace.age else -1 endif)
+}

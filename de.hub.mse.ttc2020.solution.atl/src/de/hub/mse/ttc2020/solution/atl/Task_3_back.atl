@@ -1,0 +1,12 @@
+-- @atlcompiler emftvm
+-- @path V1=/de.hub.mse.ttc2020.benchmark/data/scenario3/models/V1.ecore
+-- @path V2=/de.hub.mse.ttc2020.benchmark/data/scenario3/models/V2.ecore
+module Task_3_back;
+create OUT : V1 from IN : V2;
+
+rule migrate {
+	from instance : V2!Person
+	to instance2 : V1!Person (
+		name <- if instance.name.oclIsUndefined() then '' else instance.name endif, 
+		age <- instance.age)
+}
