@@ -7,5 +7,5 @@ uses CommonHelpers;
 
 lazy rule migrate {
 	from instance : V1!Person
-	to instance2 : V2!Person (name <- instance.name, ybirth <- thisModule.year - instance.age)
+	to instance2 : V2!Person (name <:= instance.name, ybirth <:= thisModule.year - instance.age)
 }

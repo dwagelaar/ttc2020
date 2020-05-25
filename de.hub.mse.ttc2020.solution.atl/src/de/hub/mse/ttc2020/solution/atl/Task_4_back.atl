@@ -11,20 +11,20 @@ helper def : dogTrace : V1!Dog =
 lazy rule migrate {
 	from instance : V2!Container
 	to instance1 : V1!Container (
-		dog <- thisModule.Dog(instance.dog),
-		person <- thisModule.Person(instance.person)
+		dog <:= thisModule.Dog(instance.dog),
+		person <:= thisModule.Person(instance.person)
 	)
 }
 
 lazy rule Dog {
 	from dog : V2!Dog
 	to dog1 : V1!Dog (
-		name <- dog.name, 
-		age <- if thisModule.dogTrace.oclIsUndefined() then -1 else thisModule.dogTrace.age endif, 
-		owner <- thisModule.Person(dog.owner))
+		name <:= dog.name, 
+		age <:= if thisModule.dogTrace.oclIsUndefined() then -1 else thisModule.dogTrace.age endif, 
+		owner <:= thisModule.Person(dog.owner))
 }
 
 unique lazy rule Person {
 	from person : V2!Person
-	to person1 : V1!Person (name <- person.name, age <- thisModule.year - person.ybirth)
+	to person1 : V1!Person (name <:= person.name, age <:= thisModule.year - person.ybirth)
 }

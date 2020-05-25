@@ -8,6 +8,6 @@ uses CommonHelpers;
 lazy rule migrate {
 	from instance : V1!Person
 	to instance2 : V2!Person (
-		name <- instance.name, 
-		age <- if thisModule.trace.oclIsKindOf(V2!Person) then thisModule.trace.age else -1 endif)
+		name <:= instance.name, 
+		age <:= if thisModule.trace.oclIsKindOf(V2!Person) then thisModule.trace.age else -1 endif)
 }

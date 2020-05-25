@@ -8,6 +8,6 @@ uses CommonHelpers;
 lazy rule migrate {
 	from instance : V2!Person
 	to instance2 : V1!Person (
-		name <- if instance.name.oclIsUndefined() then '' else instance.name endif, 
-		age <- instance.age)
+		name <:= if instance.name.oclIsUndefined() then '' else instance.name endif, 
+		age <:= instance.age)
 }
