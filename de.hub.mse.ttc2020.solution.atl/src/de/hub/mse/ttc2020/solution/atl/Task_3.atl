@@ -3,8 +3,7 @@
 -- @path V2=/de.hub.mse.ttc2020.benchmark/data/scenario3/models/V2.ecore
 module Task_3;
 create OUT : V2 from IN : V1;
-
-helper def : trace : OclAny = OclUndefined;
+uses CommonHelpers;
 
 lazy rule migrate {
 	from instance : V1!Person

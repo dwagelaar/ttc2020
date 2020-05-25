@@ -1,0 +1,8 @@
+-- @atlcompiler emftvm
+library Helpers;
+
+helper def : trace : OclAny = OclUndefined;
+
+helper def : year : Integer =
+	"#native"!"java::util::Calendar".refInvokeStaticOperation('getInstance', Sequence{}).get(1);
+

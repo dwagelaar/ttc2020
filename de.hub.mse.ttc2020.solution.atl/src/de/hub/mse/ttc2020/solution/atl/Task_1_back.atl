@@ -3,6 +3,7 @@
 -- @path V2=/de.hub.mse.ttc2020.benchmark/data/scenario1/models/V2.ecore
 module Task_1_back;
 create OUT : V1 from IN : V2;
+uses CommonHelpers;
 
 lazy rule migrateBack {
 	from instance : V2!Person

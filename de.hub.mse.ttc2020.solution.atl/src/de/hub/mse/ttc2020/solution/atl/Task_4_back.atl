@@ -3,14 +3,10 @@
 -- @path V2=/de.hub.mse.ttc2020.benchmark/data/scenario4/models/V2.ecore
 module Task_4_back;
 create OUT : V1 from IN : V2;
-
-helper def : trace : OclAny = OclUndefined;
+uses CommonHelpers;
 
 helper def : dogTrace : V1!Dog =
 	if thisModule.trace.oclIsKindOf(V1!Container) then thisModule.trace.dog else OclUndefined endif;
-
-helper def : year : Integer =
-	"#native"!"java::util::Calendar".refInvokeStaticOperation('getInstance', Sequence{}).get(1);
 
 lazy rule migrate {
 	from instance : V2!Container
