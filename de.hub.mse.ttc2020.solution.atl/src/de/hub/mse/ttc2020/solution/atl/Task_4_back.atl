@@ -8,7 +8,7 @@ uses CommonHelpers;
 helper def : dogTrace : V1!Dog =
 	if thisModule.trace.oclIsKindOf(V1!Container) then thisModule.trace.dog else OclUndefined endif;
 
-lazy rule migrate {
+lazy rule migrateBack {
 	from instance : V2!Container
 	to instance1 : V1!Container (
 		dog <:= thisModule.Dog(instance.dog),
