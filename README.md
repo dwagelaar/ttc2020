@@ -2,6 +2,14 @@
 
 Evaluation framework and reference solution for the TTC 2020 "Round-Trip Migration of Object-Oriented Data Model Instances" case.
 
+## Building
+
+The project can be built using maven:
+
+```
+mvn verify
+```
+
 ## Performance Evaluation
 
 To use the provided plotting scripts, make sure your Python environment provides the dependencies listed in `requirements.txt`.
