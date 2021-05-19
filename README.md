@@ -12,6 +12,15 @@ The project can be built using maven:
 mvn verify
 ```
 
+## Running
+
+The project can be run with docker:
+
+```
+docker image build . -t dwagelaar/ttc2020:latest
+docker run dwagelaar/ttc2020:latest
+```
+
 ## Performance Evaluation
 
 To use the provided plotting scripts, make sure your Python environment provides the dependencies listed in `requirements.txt`.
