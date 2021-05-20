@@ -1,6 +1,6 @@
 FROM docker.io/adoptopenjdk/openjdk11:jre-11.0.11_9
 
-RUN mkdir app/results; \ 
+RUN mkdir -p app/results; \ 
  mkdir -p app/de.hub.mse.ttc2020.solution.atl; \
  mkdir -p app/de.hub.mse.ttc2020.benchmark/data/scenario1/instances/expout; \
  mkdir -p app/de.hub.mse.ttc2020.benchmark/data/scenario1/instances/input; \
