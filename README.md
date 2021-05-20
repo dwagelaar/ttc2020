@@ -17,8 +17,8 @@ mvn verify
 The project can be run with docker:
 
 ```
-docker image build . -t dwagelaar/ttc2020:latest
-docker run dwagelaar/ttc2020:latest
+docker image build . -t dwagelaar/ttc2020-atl:latest
+docker run dwagelaar/ttc2020-atl:latest
 ```
 
 ## Performance Evaluation
