@@ -18,10 +18,19 @@
 		<buildTimestamp>${maven.build.timestamp}</buildTimestamp>
 		<buildId>${buildType}${buildTimestamp}</buildId>
 		<buildType>${env.BUILD_TYPE}</buildType>
+		<atl.version>4.4.0</atl.version>
 
 		<tycho-version>1.4.0</tycho-version>
 		<tycho-extras-version>1.4.0</tycho-extras-version>
 	</properties>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>repo.eclipse.org</id>
+			<name>ATL Repository</name>
+			<url>https://repo.eclipse.org/content/groups/atl/</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<modules>
 		<module>de.hub.mse.ttc2020.benchmark</module>

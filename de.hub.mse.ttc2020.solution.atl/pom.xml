@@ -21,6 +21,37 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>atl/emftvm</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<taskdef
+									resource="org/eclipse/m2m/atl/emftvm/ant/antlib.xml"
+									classpathref="maven.plugin.classpath" />
+								<mkdir dir="${project.build.directory}/classes/de/hub/mse/ttc2020/solution/atl" />
+								<emftvm.compile	outputpath="${project.build.directory}/classes/de/hub/mse/ttc2020/solution/atl/" charset="UTF-8">
+									<moduleset dir="${project.basedir}/src/de/hub/mse/ttc2020/solution/atl/" includes="*.atl" />
+								</emftvm.compile>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.m2m.atl</groupId>
+						<artifactId>org.eclipse.m2m.atl.emftvm.ant.standalone</artifactId>
+						<version>${atl.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 	</build>
 
