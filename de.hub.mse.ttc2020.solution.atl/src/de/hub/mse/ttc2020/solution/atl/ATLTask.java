@@ -61,8 +61,12 @@ public class ATLTask extends AbstractTask {
 
 	@Override
 	public EObject migrate(final EObject instance) {
-		trace = instance;
-		return transform(migrate, instance, null);
+		try {
+			return transform(migrate, instance, trace);
+		} finally {
+			trace = instance;
+			migrate.getOutputModels().get("OUT").getResource().getContents().clear();
+		}
 	}
 
 	@Override
@@ -70,8 +74,7 @@ public class ATLTask extends AbstractTask {
 		try {
 			return transform(migrateBack, instance, trace);
 		} finally {
-			trace = null;
-			migrate.getOutputModels().get("OUT").getResource().getContents().clear();
+			trace = instance;
 			migrateBack.getOutputModels().get("OUT").getResource().getContents().clear();
 		}
 	}
