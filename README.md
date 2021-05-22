@@ -1,6 +1,7 @@
 # TTC2020
 
 [![Java CI with Maven](https://github.com/dwagelaar/ttc2020/actions/workflows/maven.yml/badge.svg)](https://github.com/dwagelaar/ttc2020/actions/workflows/maven.yml)
+[![Docker Pulls](https://img.shields.io/docker/pulls/dwagelaar/ttc2020-atl?label=docker%20pulls)](https://hub.docker.com/r/dwagelaar/ttc2020-atl)
 
 Evaluation framework and reference solution for the TTC 2020 "Round-Trip Migration of Object-Oriented Data Model Instances" case.
 
